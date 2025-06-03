@@ -1,0 +1,114 @@
+Homework Assignment Prt 3. Rubio
+
+SIXTH- TAXES SYSTEM
+SEVETH- BANKING SYSTEM
+
+
+SIXTH - TAX SYSTEM
+
+def tax_calculations():
+    month_salary= int(input("Insert your monthly salary:"))
+    annual_salary = month_salary * 12
+    
+
+    if annual_salary <= 12570:
+        tax = 0
+        tax_rate = (month_salary * tax)/100
+        print("No income taxes")
+        
+    elif  12571 <= annual_salary <= 50270:
+        tax = 20
+        tax_rate = (month_salary * tax)/100
+        remaining_amount = month_salary - tax_rate
+
+        print("The required payment is", remaining_amount)
+    elif 50271 <= annual_salary <= 150000:
+        tax = 40
+        tax_rate = (month_salary * tax)/100
+        remaining_amount = month_salary - tax_rate
+
+        print("The required payment is", remaining_amount)
+    elif annual_salary >= 150000:
+        tax = 45
+        tax_rate = (month_salary * tax)/100
+        remaining_amount = month_salary - tax_rate
+
+        print("The required payment is", remaining_amount)
+    else:
+        tax = 0
+        
+
+        tax_rate = (month_salary * tax)/100
+        remaining_amount = month_salary - tax_rate
+
+tax_calculations() 
+
+SEVENTH- BANKING SYSTEM
+
+def login():
+    stored_username = "Caesar Jhúlio"
+    stored_password = "1985euler"
+    for attempts in range(3):
+        username= input("Please enter your username here:")
+        password = input("And please enter your password:")
+        if username == stored_username and stored_password == password:
+            print("Login sucessful")
+            return True
+        else:
+            print("Unsuccessful attempt, try again")
+    print("Too many attempts, closing system...")
+    return False
+
+def NatWest():
+    print("Welcome to NatWest Bank!")
+    print("Here, we will attend you with all kinds of services.")
+    print("From balance check, deposits, withdraws and even transfers.")
+    print("Click the button run to give your credentials and choose any services")
+
+    
+def menu_system(balance):
+    while True:
+        print("---------------")
+        print("\nMenu Display")
+        print("1.Check Balance")
+        print("2.Deposit Money")
+        print("3.Withdraw Money")
+        print("4.Exit System")
+        choice = int(input("Choose your option here from (1-4):"))
+        if choice == 1:
+            print("Display: Your current balance is", balance)
+            break
+        elif choice == 2:
+            deposit = float(input("How much do you want to deposit?"))
+            if deposit <= 0:
+                print("Wrong value, try again")
+            else:
+                balance += deposit
+                print("Your new current balance is", balance)
+                break
+        elif choice == 3:
+            withdraw = float(input("Enter how much you want to take:"))
+            if withdraw <0:
+                print("Invalid input, try again.")
+            elif withdraw > balance:
+                print("Withdraw should not be bigger than the balance, try again")
+            else:
+                balance -= withdraw
+                print("Your new balance is", balance)
+                break
+        elif choice == 4:
+            print("Closing system... Goodbye and have a good day!")
+            break 
+        else:
+            print("Wrong number, it should be in range (1-4)")
+            
+
+
+#This additional step to make sure the user that entered the wrong credentials 
+#Don´t proceed with the next steps
+if login():
+    NatWest()
+    menu_system(balance=1800)
+else:
+    print("Acess denied.")
+

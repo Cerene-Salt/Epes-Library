@@ -1,0 +1,170 @@
+TERM 2 FINAL CS PROJECT - RUBIO
+
+#PROJECT: University performance and methodologies
+#This project was splited in two parts:
+"""
+The first part,which is the code below, represents
+the evaluation and classification for any university anywhere
+and their performance is determined using methodologies and calculations
+"""
+def University():
+    """
+    For now, the requirements are the university to have a number of researchers, and
+    published documents in the name of the university itself, by editors 
+    with their  fixed quality scores
+    To make the user re-prompt, and to avoid other types of error inputs, 
+    we are putting out variables in a while and try loop"""
+    
+    while True:
+        try:
+            print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+            n_researchers= int(input("How many researchers there are in an university?"))
+            if n_researchers <0:
+                print("Negative numbers are forbidden, try again")
+                continue
+            n_books = int(input("Published books in the name of the university"))
+            if n_books <0:
+                print("Negative numbers are forbidden, try again")
+                continue
+            print("---------------------------------------------------------------------------------")
+            QS_books = int(input("Quality score for those books(1-5). 1 is the worst and 5 the best: "))
+            if QS_books <0:
+                print("Negative numbers are forbidden, try again")
+            print("------------------------------------------------------------------")
+            n_articles = int(input("Published articles in the name of the university:"))
+            if n_articles <0:
+                print("Negative numbers are forbidden, try again")
+                continue
+            print("---------------------------------------------------------------------------------")
+            QS_articles = int(input("Classification for those articles (1-5):"))
+            if QS_articles <0:
+                print("Negative numbers are forbidden, try again")
+                continue
+            print("------------------------------------------------------------------")
+            n_c_papers = int(input("Published conference papers in the name of the university:"))
+            if n_c_papers <0:
+                print("Negative numbers are forbidden, try again")
+                continue
+            print("---------------------------------------------------------------------------------")
+            QS_c_papers = int(input("Classification for those conference papers(1-5):"))
+            if QS_c_papers <0:
+                print("negative numbers are forbidden try again")
+                continue
+            print("-------------------------------------------------------------------")
+            if QS_books not in range (1,6) or QS_articles not in range (1,6) or QS_c_papers not in range (1,6):
+                print("Quality scores should be in range 1-5, try again")
+                continue
+              
+
+            """
+            This is what can be called, by me, the theoretical target;
+            that is the theoretical procedure to evaluate and classify an university performance
+            it serves as prof that the performance will confirm the theory. The N constant represents
+            an average of 5000 reserachers, being the fixed value for the theory statement.
+            """
+            Target_1= ((200*5+500*2+800)*2)/5000
+            Target_2= ((300*5+700*2+1000)*3)/5000
+            Target_3= ((400*5+1000*2+1500)*4)/5000
+
+
+            """
+            Now the performance is set to determine how well the university is doing
+            as lower the performance is , worst is the university reputation, and as
+            higher as it gets, the performance evaluation and classification will be higher
+            """
+            Performance = (5*n_books*QS_books+2*n_articles*QS_articles+QS_c_papers*n_c_papers)/5000
+            if Performance < Target_1:
+                print("You university performance is unacceptable, consequently, representing 25% of the universities with the worst performance")
+            elif Target_1 <= Performance < Target_2:
+                print("Is Acceptable, with this rating, your university still has to progress")
+            elif Target_2 <= Performance < Target_3:
+                print("Good, your university is likely to be in a good ranking")
+            elif Performance >= Target_3:
+                print("Excelled, your university is one of the best in Canada")
+            print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+            break
+        
+        except ValueError:
+            print("Invalid input, try again")
+
+#NOW we are on the second section, a certain prompted number of researchers
+# Willl have a certain performance by the number of their documents published 
+#with a ranking by performance of R.
+def comparing_researcher_performance():
+    while True:
+        try:
+            N= int(input("Number of researchers:"))
+            if N<0:
+                print("Negative numbers are forbidden")
+                continue
+            break
+        except ValueError:
+            print("Invalid input, try again")
+    
+    researchers=[]
+            
+    """
+    Since we don´t know the requirement for the number of user, 
+    this query will serve as a personalization for the user
+    """
+    
+    for a in range(1,N+1):
+        print("Information for researcher:",a)
+
+        while True:
+            try:
+                name = input("Researcher´s name:")
+                
+                books = int(input("published books:"))
+                if books <0:
+                    print("Negative number are forbidden, try again")
+                    continue
+            
+                articles = int(input("articles published:"))
+                if articles <0:
+                    print("Negative number are forbidden, try again")
+                    continue
+        
+                conf_papers = int(input("Conference papers published:"))
+                if conf_papers <0:
+                    print("Negative number are forbidden, try again")
+                    continue
+                QS_books = int(input("Score for books (1-5):"))
+                QS_articles = int(input("Score for journal articles:"))
+                QS_cp = int(input("Score for conference papers:"))
+
+                if QS_books not in range (1,6) or QS_articles not in range(1,6) or QS_cp not in range (1,6):
+                    print("Quality scores must be between 1 and 5, try again")
+                    continue 
+                break
+            
+            except ValueError:
+                print("NO NO, invalid input, try again ")
+            
+        P = (5*books*QS_books+3*articles*QS_articles+conf_papers*QS_cp)
+         
+        """
+        In this section, after defining the researchers' information, to rank them
+        we have to store their records, sort them into descending order, 
+        with the highest performing first, and then printing the final ranking"""
+        
+        researchers.append((name,P))
+
+    researchers_sorted = sorted(researchers, key=lambda x: x[1], reverse= True)
+    
+    print("Researcher performance Rankings:")
+    for rank, (name,P) in enumerate(researchers_sorted, start=1):
+        print(f"{rank}.{name} - Performance Score: {P}")
+
+            
+            
+                 
+def main():
+    """
+    And finally, we create a main function to make sure to execute each one in the right order
+    """
+    University()
+    comparing_researcher_performance()
+
+
+main()
