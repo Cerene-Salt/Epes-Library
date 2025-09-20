@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epes"
+version = "0.1.0"
+description = "Epe Framework: coefficient-space auditing metrics (ϝ, δϝ, ϝ*) for model comparison"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Cesar" }]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "matplotlib>=3.7",
+  "scikit-learn>=1.3"
+]
+
+[tool.setuptools.package-data]
+epes = ["py.typed"]
+
+[tool.setuptools.packages.find]
+where = ["."]
