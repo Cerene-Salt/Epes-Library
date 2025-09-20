@@ -8,3 +8,5 @@ python -m venv .venv && source .venv/bin/activate  # (Linux/Mac)
 # or: .venv\Scripts\activate (Windows)
 pip install -e .
 pip install pytest
+
+<!-- Trigger workflow -->
